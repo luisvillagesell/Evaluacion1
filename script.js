@@ -6,29 +6,36 @@ let silos = {
 };
 
 // Función para ingresar granos
-// Función para ingresar granos
 function ingresarGranos() {
     const tipoDeGrano = document.getElementById('tipoDeGrano').value;
     const cantidad = parseInt(document.getElementById('cantidad').value);
-    
+    let informe = '';
     // Incrementar stock del silo correspondiente
     switch (tipoDeGrano) {
         case 'buen_estado':
             silos.silo1.stock += cantidad;
+            informe = `Se ingresaron ${cantidad} toneladas de granos en buen estado al silo 1`;
             break;
         case 'cuerpos_extraños':
             silos.silo2.stock += cantidad;
+            informe = `Se ingresaron ${cantidad} toneladas con cuerpos extraños al silo 2.`;
             break;
         case 'humedad':
             silos.silo3.stock += cantidad;
+            informe = `Se ingresaron ${cantidad} toneladas de granos con humedad al silo 3.`;
             break;
         default:
             break;
     }
+
+    mostrarInforme(informe);
     
     actualizarEstadoSilos();
 }
 
+function mostrarInforme(informe) {
+    document.getElementById('informeTexto').innerText = informe;
+}
     
     actualizarEstadoSilos();
 
@@ -56,3 +63,4 @@ function actualizarEstadoSilos() {
 
 // Mostrar el estado inicial de los silos al cargar la página
 actualizarEstadoSilos();
+
